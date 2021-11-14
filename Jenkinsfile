@@ -21,7 +21,7 @@ pipeline{
     post{
         always{
             echo "Post Build stage."
-            emailext attachLog: true, body: '', compressLog: true, subject: 'Build Status', to: 'vipin6673@gmail.com'
+            emailext attachLog: true, body: '', subject: 'Build Status', to: 'vipin6673@gmail.com'
         }
     }
 }
