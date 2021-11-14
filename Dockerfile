@@ -17,4 +17,4 @@ FROM nginx:1.21.4
 
 COPY --from=builder /app/build/ /usr/share/nginx/html
 
-ENTRYPOINT [ "nginx","-g","daemon off" ]
+ENTRYPOINT [ "nginx","-g","daemon off;" ]
