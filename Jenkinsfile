@@ -26,7 +26,7 @@ pipeline{
                     string(credentialsId: 'mysql_db', variable: 'MYSQL_DB')
                 ]){
                     sh('docker run -dp 3306 --name mysql-db -e MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASS -e MYSQL_USER=$MYSQL_USER -e MYSQL_PASSWORD=$MYSQL_PASS -e MYSQL_DATABASE=$MYSQL_DB -v mysql-db:/var/lib/mysql mysql')
-                    sh('docker run -dp 80:80 --link mysql-db:mysql-db -e DB_SERVER=mysql-db -e DB_USER=$MYSQL_USER -e DB_PASSWORD=MYSQL_PASS -e DB_NAME=$MYSQL_DB vipin0/php-app:0.1')
+                    sh('docker run -dp 80:80 --link mysql-db:mysql-db -e DB_SERVER=mysql-db -e DB_USER=$MYSQL_USER -e DB_PASSWORD=$MYSQL_PASS -e DB_NAME=$MYSQL_DB vipin0/php-app:0.1')
                 }
             }
         }
