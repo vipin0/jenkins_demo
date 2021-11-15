@@ -4,7 +4,7 @@ pipeline{
     stages{
         stage("build"){
             steps{
-                echo "Build stage."
+                docker build -t php-app:0.1 .
             }
         }
         stage("test"){
@@ -14,14 +14,14 @@ pipeline{
         }
         stage("deploy"){
             steps{
-                echo "Deploy stage."
+                docker run --rm -dp 80:80 php-app:0.1
             }
         }
     }
     post{
         always{
             echo "Post Build stage."
-            emailext attachLog: true, body: '', subject: 'Build Status', to: 'vipin6673@gmail.com'
+            // emailext attachLog: true, body: '', subject: 'Build Status', to: 'vipin6673@gmail.com'
         }
     }
 }
