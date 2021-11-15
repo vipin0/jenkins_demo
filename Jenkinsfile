@@ -16,7 +16,8 @@ pipeline{
         }
         stage("deploy"){
             steps{
-               sh "docker run --rm -dp 80:80 php-app:0.1"
+                echo "Deploying php-app"
+            //    sh "docker run --rm -dp 80:80 php-app:0.1"
             }
         }
     }
