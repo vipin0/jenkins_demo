@@ -8,17 +8,22 @@ pipeline{
                 withCredentials([
                     usernamePassword(credentialsId: 'dockerhub-repo', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')
                 ]){
-                    sh "docker build -t vipin0/php-app:0.1 ."
+//                     sh "docker build -t vipin0/php-app:0.1 ."
                     // don't use this
 //                     sh "echo $PASSWORD | docker login -u $USERNAME --password-stdin"   
-                    sh('echo $PASSWORD | docker login -u $USERNAME --password-stdin')
-                    sh 'docker push vipin0/php-app:0.1'
+//                     sh('echo $PASSWORD | docker login -u $USERNAME --password-stdin')
+//                     sh 'docker push vipin0/php-app:0.1'
                 }
             }
         }
         stage("deploy"){
             steps{
                 echo "Deploying php-app"
+                withCredentials([
+                    secretTest(credentialsId: 'mysql_user', secretVariable: 'MYSQL_USER')
+                ]){
+                    sh "echo $MYSQL_USER"
+                }
             //    sh "docker run --rm -dp 80:80 php-app:0.1"
             }
         }
