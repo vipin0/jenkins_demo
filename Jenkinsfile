@@ -20,7 +20,7 @@ pipeline{
             steps{
                 echo "Deploying php-app"
                 withCredentials([
-                    secretTest(credentialsId: 'mysql_user', secretVariable: 'MYSQL_USER')
+                    secretText(credentialsId: 'mysql_user', secretVariable: 'MYSQL_USER')
                 ]){
                     sh "echo $MYSQL_USER"
                 }
