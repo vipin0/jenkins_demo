@@ -1,15 +1,8 @@
-FROM alpine:3.14
+FROM php:7.4-apache
 
+RUN apt update \
+    && apt install -y vim\
+    && docker-php-ext-install mysqli \
+    && docker-php-ext-enable mysqli
 
-WORKDIR /var/www/localhost/htdocs
-
-RUN apk update \
-    && apk add apache2 php7 php7-mysqlnd \
-    php7-mbstring php7-opcache php7-gd php7-fpm php7-apache2 \
-    vim
-
-COPY . .
-
-EXPOSE 80/tcp
-
-CMD [ "httpd","-D","FOREGROUND"]
+COPY . /var/www/html
