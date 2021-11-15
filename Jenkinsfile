@@ -4,7 +4,7 @@ pipeline{
     stages{
         stage("build"){
             steps{
-                docker build -t php-app:0.1 .
+                sh "docker build -t php-app:0.1 ."
             }
         }
         stage("test"){
@@ -14,7 +14,7 @@ pipeline{
         }
         stage("deploy"){
             steps{
-                docker run --rm -dp 80:80 php-app:0.1
+               sh "docker run --rm -dp 80:80 php-app:0.1"
             }
         }
     }
