@@ -6,7 +6,7 @@ pipeline{
             steps{
                 echo "Build the php-app"
                 withCredentials([
-                    usernamePassword(credentialsId: 'dockerhub-repo', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD'))
+                    usernamePassword(credentialsId: 'dockerhub-repo', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')
                 ]){
                     sh "docker build -t vipin0/php-app:0.1 ."
                     sh "echo $PASSWORD | docker login -u $USERNAME --password-stdin"
