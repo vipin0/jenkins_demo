@@ -11,7 +11,7 @@ pipeline{
                     sh "docker build -t vipin0/php-app:0.1 ."
                     // don't use this
 //                     sh "echo $PASSWORD | docker login -u $USERNAME --password-stdin"   
-                    sh('echo $PASSWORD | docker login -u $USERNAME --password-stdin)'
+                    sh('echo $PASSWORD | docker login -u $USERNAME --password-stdin')
                     sh 'docker push vipin0/php-app:0.1'
                 }
             }
